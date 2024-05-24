@@ -1,0 +1,18 @@
+CC = gcc
+CFLAGS = -std=c99 -Wall -Werror -Werror=vla -pedantic -g -lm
+
+SRCS = peca.c fila.c pilha.c funcionario.c simulador.c
+OBJS = $(SRCS:.c=.o)
+
+.PHONY: all clean
+
+all: simulador
+
+simulador: $(OBJS)
+			$(CC) $(CFLAGS) -o $@ $^
+
+%.o: %.c
+		$(CC) $(CFLAGS) -c -o $@ $<
+
+clean: 
+	rm -f simulador $(OBJS)
